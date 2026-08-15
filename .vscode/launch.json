@@ -1,0 +1,41 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Attach to Process",
+            "type": "debugpy",
+            "request": "attach",
+            "processId": "${command:pickProcess}"
+         }
+        // {
+        //     "name": "1. Debug Data Preprocessing",
+        //     "type": "debugpy",
+        //     "request": "launch",
+        //     "program": "${workspaceFolder}/utils/housing_data_preprocessor.py",
+        //     "console": "integratedTerminal",
+        //     "justMyCode": true
+        // },
+        // {
+        //     "name": "2. Debug Model Training",
+        //     "type": "debugpy",
+        //     "request": "launch",
+        //     "program": "${workspaceFolder}/train_model.py",
+        //     "console": "integratedTerminal",
+        //     "justMyCode": true
+        // },
+        // {
+        //     "name": "3. Debug App Layer",
+        //     "type": "debugpy",
+        //     "request": "launch",
+        //     "program": "${workspaceFolder}/app.py",
+        //     "console": "integratedTerminal",
+        //     "justMyCode": false
+        // },
+        // {
+        //     "name": "Python Debugger: Python File",
+        //     "type": "debugpy",
+        //     "request": "launch",
+        //     "program": "${file}"
+        // }
+    ]
+}
