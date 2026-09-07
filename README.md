@@ -27,6 +27,7 @@ The project demonstrates an end-to-end supervised machine learning workflow: dat
 
 ## 🧠 Machine Learning Workflow
 
+``` text
 Housing Dataset
       │
       ▼
@@ -62,65 +63,70 @@ Save Model + Preprocessor
       │
       ▼
 Tkinter Prediction Application
-
+```
 # 🤖 Models
 
 - The training pipeline compares three models.
-- Random Forest and Gradient Boosting are tuned with GridSearchCV using 5-fold cross-validation. 
+- Random Forest and Gradient Boosting are tuned with `GridSearchCV` using 5-fold cross-validation. 
 - The final model is selected using the highest R² score on the held-out test set.
 
  **Current Evaluation Results**
 
-Using the included 1,000-row dataset and the current random_state=42 train/test split:
+Using the included 1,000-row dataset and the current `random_state=42` train/test split:
 
 **Model**                     **R²**        **MAE**
+----------------------- ------------ -----------------
 Linear Regression             0.7431       $34,186.76
 Random Forest                 0.7882       $31,542.90
 Gradient Boosting             0.8213       $28,863.14
 
-In the current configuration, Gradient Boosting produced the strongest test-set R².
+In the current configuration, **Gradient Boosting** produced the strongest test-set R².
 These metrics describe this project dataset and split only; 
 they should not be interpreted as real-world housing-market accuracy.
 
 ## 🏡 Prediction Features
 
-**Feature**             **Description**
-size_sqft         Property size in square feet
-total_bedrooms    Number of bedrooms
-total_bathrooms   Number of bathrooms
-house_age         Property age in years
-location          Urban, Suburban, or Rural
-garage            Garage availability
-condition         Excellent, Good, Average, or Poor
+Feature             Description
+------------------- -----------------------------------
+`size_sqft`         Property size in square feet
+`total_bedrooms`    Number of bedrooms
+`total_bathrooms`   Number of bathrooms
+`house_age`         Property age in years
+`location`          Urban, Suburban, or Rural
+`garage`            Garage availability
+`condition`         Excellent, Good, Average, or Poor
 
-The target variable is 'price'.
+The target variable is `price`.
 
-# 🧹 Data Preprocessing
+## 🧹 Data Preprocessing
 
-HousingDataPreprocessor is responsible for preparing data for model training and inference.
+`HousingDataPreprocessor` is responsible for preparing data for model training and inference.
 
 The current pipeline:
 - loads the housing dataset with pandas
 - removes rows containing missing values
-- separates predictors from the price target
-- encodes categorical columns with LabelEncoder
-- scales features with StandardScaler
+- separates predictors from the `price` target
+- encodes categorical columns with `LabelEncoder`
+- scales features with `StandardScaler`
 - stores feature order, encoders, and scaler for future predictions
 
 The fitted preprocessing objects are saved alongside the trained model
 so new user inputs are transformed consistently before prediction.
 
-# 🖥️ Desktop Application
+## 🖥️ Desktop Application
 The Tkinter application contains three main tabs.
 
-🔮 Predict - Users enter property details and receive an estimated price from the saved model.
+### 🔮 Predict 
+Users enter property details and receive an estimated price from the saved model.
 
-📊 Data - Displays a sample of the housing dataset together with descriptive statistics.
+### 📊 Data 
+Displays a sample of the housing dataset together with descriptive statistics.
 
-📈 Visualizations - Displays feature importance (when available for the selected model) and a scatter plot showing house size versus price.
+### 📈 Visualizations 
+Displays feature importance (when available for the selected model) and a scatter plot showing house size versus price.
 
-# 📁 Project Structure
-
+## 📁 Project Structure
+``` text
 house-price-predictor/
 │
 ├── app.py
@@ -138,76 +144,89 @@ house-price-predictor/
 │
 └── utils/
     └── housing_data_preprocessor.py
+```
+## 🛠️ Technology Stack
 
-# 🛠️ Technology Stack
+- **Python**
+- **pandas** --- data loading and manipulation
+- **NumPy** --- numerical operations
+- **scikit-learn** --- preprocessing, regression, tuning, and evaluation
+- **Matplotlib / Seaborn** --- visualizations
+- **Tkinter** --- desktop graphical user interface
+- **joblib** --- model and preprocessor persistence
 
-- Python
-- pandas --- data loading and manipulation
-- NumPy --- numerical operations
-- scikit-learn --- preprocessing, regression, tuning, and evaluation
-- Matplotlib / Seaborn --- visualizations
-- Tkinter --- desktop graphical user interface
-- joblib --- model and preprocessor persistence
+## 🚀 Installation
 
-# 🚀 Installation
-
-1. Clone the repository:
+### 1. Clone the repository:
 ```bash
 git clone https://github.com/soniakataria10/housing-market-predictors.git
 cd housing-market-predictors
 ```
-2. Create a virtual environment:
+### 2. Create a virtual environment:
 ```bash
 python -m venv .venv
 ```
-3. Activate it
+### 3. Activate it
 Windows PowerShell:
 ```bash
 .\.venv\Scripts\Activate.ps1
 ```
-4. Install dependencies:
+### 4. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
-Tkinter is normally distributed with standard Python installations rather than installed from PyPI. On some Linux distributions it must be installed through the operating system package manager.
+> Tkinter is normally distributed with standard Python installations
+> rather than installed from PyPI. On some Linux distributions it must
+> be installed through the operating system package manager.
 
-# 🏋️ Train the Model
+## 🏋️ Train the Model
 
 Run:
+```bash
 python train_model.py
-
+```
 The training script:
-- loads and preprocesses the dataset
-- creates an 80/20 train/test split
-- trains three regression algorithms
-- tunes the ensemble models
-- evaluates each model
-- selects the best model by R²
-- saves the trained model and fitted preprocessor
-Generated artifacts are stored under models/.
+1.  loads and preprocesses the dataset
+2.  creates an 80/20 train/test split
+3.  trains three regression algorithms
+4.  tunes the ensemble models
+5.  evaluates each model
+6.  selects the best model by R²
+7.  saves the trained model and fitted preprocessor
 
-# ▶️ Run the Application
+Generated artifacts are stored under `models/`.
+
+## ▶️ Run the Application
 
 After training the model:
-
+```bash
 python app.py
+```
+Enter property details in the **Predict** tab and select **Predict Price**.
 
-Enter property details in the Predict tab and select Predict Price.
-
-# 📊 Evaluation Metrics
+## 📊 Evaluation Metrics
 
 The project evaluates regression models using:
 
-- R² (Coefficient of Determination) --- measures how much variance in house prices is explained by the model.
-- MAE (Mean Absolute Error) --- measures the average absolute prediction error in price units.
-- MSE (Mean Squared Error) --- penalizes larger prediction errors more heavily.
+- **R² (Coefficient of Determination)** --- measures how much variance in house prices is explained by the model.
+- **MAE (Mean Absolute Error)** --- measures the average absolute prediction error in price units.
+- **MSE (Mean Squared Error)** --- penalizes larger prediction errors more heavily.
 
-# ⚠️ Limitations
+## ⚠️ Limitations
 
-- The included dataset is suitable for demonstrating the ML workflow but should not be treated as a production real-estate valuation dataset.
-- Location is represented only by broad categories (Urban, Suburban, Rural) rather than real geographic features.
-- The model does not include market-time variables such as interest rates, sale date, neighborhood trends, or comparable sales.
-- Label encoding imposes numeric codes on categorical values; production systems would typically evaluate encodings such as one-hot encoding for nominal features.
-- The current desktop application is intended for local, single-user execution.
-- Prediction uncertainty is not currently calibrated, so the UI should not treat a fixed confidence label as a statistical confidence interval.
+-   The included dataset is suitable for demonstrating the ML workflow
+    but should not be treated as a production real-estate valuation
+    dataset.
+-   Location is represented only by broad categories (`Urban`,
+    `Suburban`, `Rural`) rather than real geographic features.
+-   The model does not include market-time variables such as interest
+    rates, sale date, neighborhood trends, or comparable sales.
+-   Label encoding imposes numeric codes on categorical values;
+    production systems would typically evaluate encodings such as
+    one-hot encoding for nominal features.
+-   The current desktop application is intended for local, single-user
+    execution.
+-   Prediction uncertainty is not currently calibrated, so the UI should
+    not treat a fixed confidence label as a statistical confidence
+    interval.
 
