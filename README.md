@@ -70,45 +70,52 @@ Tkinter Prediction Application
 - Random Forest and Gradient Boosting are tuned with `GridSearchCV` using 5-fold cross-validation. 
 - The final model is selected using the highest R² score on the held-out test set.
 
- **Current Evaluation Results**
+### Current Evaluation Results
 
-Using the included 1,000-row dataset and the current `random_state=42` train/test split:
+Using the included 1,000-row dataset and the current `random_state=42`
+train/test split:
 
-**Model**                     **R²**        **MAE**
------------------------ ------------ -----------------
-Linear Regression             0.7431       $34,186.76
-Random Forest                 0.7882       $31,542.90
-Gradient Boosting             0.8213       $28,863.14
+  Model                             R²               MAE
+  ----------------------- ------------ -----------------
+  Linear Regression             0.7431       \$34,186.76
+  Random Forest                 0.7882       \$31,542.90
+  **Gradient Boosting**     **0.8213**   **\$28,863.14**
 
-In the current configuration, **Gradient Boosting** produced the strongest test-set R².
-These metrics describe this project dataset and split only; 
-they should not be interpreted as real-world housing-market accuracy.
+In the current configuration, **Gradient Boosting** produced the
+strongest test-set R².
+
+> These metrics describe this project dataset and split only; they
+> should not be interpreted as real-world housing-market accuracy.
 
 ## 🏡 Prediction Features
 
-Feature             Description
-------------------- -----------------------------------
-`size_sqft`         Property size in square feet
-`total_bedrooms`    Number of bedrooms
-`total_bathrooms`   Number of bathrooms
-`house_age`         Property age in years
-`location`          Urban, Suburban, or Rural
-`garage`            Garage availability
-`condition`         Excellent, Good, Average, or Poor
+The model uses:
+
+  Feature             Description
+  ------------------- -----------------------------------
+  `size_sqft`         Property size in square feet
+  `total_bedrooms`    Number of bedrooms
+  `total_bathrooms`   Number of bathrooms
+  `house_age`         Property age in years
+  `location`          Urban, Suburban, or Rural
+  `garage`            Garage availability
+  `condition`         Excellent, Good, Average, or Poor
 
 The target variable is `price`.
 
 ## 🧹 Data Preprocessing
 
-`HousingDataPreprocessor` is responsible for preparing data for model training and inference.
+`HousingDataPreprocessor` is responsible for preparing data for model
+training and inference.
 
 The current pipeline:
-- loads the housing dataset with pandas
-- removes rows containing missing values
-- separates predictors from the `price` target
-- encodes categorical columns with `LabelEncoder`
-- scales features with `StandardScaler`
-- stores feature order, encoders, and scaler for future predictions
+
+-   loads the housing dataset with pandas
+-   removes rows containing missing values
+-   separates predictors from the `price` target
+-   encodes categorical columns with `LabelEncoder`
+-   scales features with `StandardScaler`
+-   stores feature order, encoders, and scaler for future predictions
 
 The fitted preprocessing objects are saved alongside the trained model
 so new user inputs are transformed consistently before prediction.
