@@ -4,6 +4,17 @@ A desktop machine learning application that estimates house prices from property
 
 The project demonstrates an end-to-end supervised machine learning workflow: data preparation, categorical encoding, feature scaling, train/test splitting, model comparison, hyperparameter tuning, evaluation, model persistence, and prediction through a Tkinter graphical interface.
 
+## 📸 Application Screenshots
+
+### House Price Prediction
+![House Price Prediction](assets/1-Predict.png)
+
+### Data
+![Data](assets/2-Data.png)
+
+### Model Visualization
+![Model Visualization](assets/3-Model-Visualization.png)
+
 ## ✨ Features
 
 - House-price prediction from seven property features
